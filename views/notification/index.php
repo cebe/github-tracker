@@ -8,4 +8,7 @@ $this->title = 'Github Notifications';
 
     <h1>Github Notifications</h1>
 
+    <pre>
+        <?= print_r($notifications, true); ?>
+    </pre>
 </div>

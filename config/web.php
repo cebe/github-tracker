@@ -12,18 +12,18 @@ $config = [
             'cookieValidationKey' => '',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => yii\caching\FileCache::class,
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => app\models\User::class,
             'enableAutoLogin' => false,
         ],
 
         'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
+            'class' => yii\authclient\Collection::class,
             'clients' => [
                 'github' => [
-                    'class' => 'yii\authclient\clients\GitHub',
+                    'class' => yii\authclient\clients\GitHub::class,
                     // !!! set these in web.local.php
                     'clientId' => '',
                     'clientSecret' => '',
@@ -32,11 +32,15 @@ $config = [
             ],
         ],
 
+        'github' => [
+            'class' => app\components\Github::class,
+        ],
+
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
         'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
+            'class' => yii\swiftmailer\Mailer::class,
             // send all mails to a file by default. You have to set
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
@@ -46,7 +50,7 @@ $config = [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],

@@ -8,20 +8,28 @@
 namespace app\controllers;
 
 
+use app\components\Github;
 use Github\Client;
+use Yii;
 use yii\web\Controller;
 
 class NotificationController extends Controller
 {
 	public function actionIndex()
 	{
-		// TODO cache
+		$notifications = $this->getGithub()->client()->notifications()->all();
 
-//		$api = new Client();
-//		$api
-//
+
 		return $this->render('index', [
-
+			'notifications' => $notifications,
 		]);
+	}
+
+	/**
+	 * @return Github
+	 */
+	protected function getGithub()
+	{
+		return Yii::$app->github;
 	}
 }
