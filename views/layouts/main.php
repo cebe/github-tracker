@@ -38,6 +38,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Notifications', 'url' => ['/notification/index'], 'visible' => !Yii::$app->user->isGuest],
+            ['label' => 'PRs', 'url' => ['/pr/index'], 'visible' => !Yii::$app->user->isGuest],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/auth', 'authclient' => 'github']]
             ) : (

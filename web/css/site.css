@@ -113,3 +113,20 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+/* PR page */
+
+.panel-heading h3 {
+    margin: 0;
+}
+
+.form-inline .sr-only {
+    display: block;
+    height: auto;
+    width: auto;
+    position: inherit;
+}
+
+.label a {
+    color: #fff;
+}
