@@ -10,8 +10,6 @@ use yii\helpers\Html;
 <div class="panel panel-default">
     <div class="panel-heading">
     <h3>
-        <?= Html::a('#' . Html::encode($model['number']), $model['html_url']) ?>
-        <small><?= Html::a(Html::encode($model['title']), $model['html_url']) ?></a></small>
         <div class="pull-right"><small>
 
             <?php foreach($model->getType() as $type) {
@@ -29,6 +27,8 @@ use yii\helpers\Html;
 
             <?= HtmlHelper::statusLabel($model['state']) ?>
         </small></div>
+        <?= Html::a('#' . Html::encode($model['number']), $model['html_url']) ?>
+        <small><?= Html::a(Html::encode($model['title']), $model['html_url']) ?></a></small>
     </h3>
     </div>
 
@@ -55,26 +55,24 @@ use yii\helpers\Html;
     </div>
         <hr>
     <div class="panel-body">
-        <?php /*
         <div class="pull-right">
-            Statuses:
+            Reviews:
             <?php
 
             echo '<ul>';
-            $currentStatus = $model->getCurrentStatuses();
-            foreach($currentStatus as $status) {
+            $reviews = $model->getReviews();
+            foreach($reviews as $review) {
                 echo Html::tag('li',
-                    'State: ' . $status['state'] . ' '
-                    . ', ' . str_replace('continuous-integration/travis-ci', 'travis-ci', $status['context']) . ', '
-                    . Html::a(Html::encode($status['description']), $status['target_url'])
+                    HtmlHelper::githubUser($review['user'])
+                    . ' ' . Html::a($review['state'], $review['html_url'])
+                    . ' ' . (empty($review['body']) ? '' : Html::tag('p', Html::encode($review['body'])))
                 );
-                // echo '<pre>' . print_r($status, true) . '</pre>';
+                // echo '<pre>' . print_r($review, true) . '</pre>';
             }
             echo '</ul>';
 
             ?>
-        </div>*/
-        ?>
+        </div>
 
         Files:
         <ul>

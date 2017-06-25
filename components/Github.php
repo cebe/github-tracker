@@ -20,9 +20,10 @@ class Github extends Component
 		}
 
 		// create client
-		$client = new \Github\HttpClient\CachedHttpClient();
-		$client->setCache(new \Github\HttpClient\Cache\FilesystemCache(Yii::getAlias('@runtime/github-cache')));
-		$client = new \Github\Client($client);
+//		$client = new \Github\HttpClient\CachedHttpClient();
+//		$client->setCache(new \Github\HttpClient\Cache\FilesystemCache(Yii::getAlias('@runtime/github-cache')));
+//		$client = new \Github\Client($client);
+		$client = new \Github\Client();
 
 		/** @var \yii\authclient\clients\GitHub $authClient */
 		$authClient = Yii::$app->authClientCollection->getClient('github');

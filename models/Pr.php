@@ -98,6 +98,28 @@ class Pr extends Object implements \ArrayAccess
         return  $this->_files = $files;
     }
 
+    private $_reviews;
+    public function getReviews()
+    {
+        if ($this->_reviews !== null) {
+            return $this->_reviews;
+        }
+        $key = "pr-{$this->_attributes['id']}-reviews";
+        $reviews = Yii::$app->cache->get($key);
+        if ($reviews === false) {
+            // https://developer.github.com/v3/pulls/reviews/
+            /** @var $client \Github\Client */
+            $client = Yii::$app->github->client();
+            /** @var $api \Github\Api\PullRequest\Review */
+            $api = $client->pullRequests()->reviews();
+            $paginator = new \Github\ResultPager($client);
+            $reviews = $paginator->fetchAll($api, 'all', [$this->_attributes['base']['user']['login'],  $this->_attributes['base']['repo']['name'], $this->_attributes['number']]);
+            Yii::$app->cache->set($key, $reviews, 0); // set cache forever, key depends on head commit sha
+        }
+        \yii\helpers\ArrayHelper::multisort($statuses, 'submitted_at');
+        return  $this->_reviews = $reviews;
+    }
+
     public function getType()
     {
         $result = [];
