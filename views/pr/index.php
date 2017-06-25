@@ -4,6 +4,11 @@
 use yii\helpers\Html;
 
 /* @var $prs \yii\data\BaseDataProvider */
+/* @var $filterModel \app\models\PrFilter */
+/* @var $milestones array */
+/* @var $authors array */
+/* @var $assignees array */
+/* @var $types array */
 
 $this->title = 'Github Notifications';
 ?>

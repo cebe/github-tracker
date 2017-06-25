@@ -4,7 +4,6 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
-use yii\base\Exception;
 use yii\base\InvalidCallException;
 
 
@@ -16,13 +15,11 @@ class Github extends Component
 	public function client()
 	{
 		if (Yii::$app->user->isGuest) {
+			// TODO auto-relogin
 			throw new InvalidCallException('Can not create github client for not logged in user.');
 		}
 
 		// create client
-//		$client = new \Github\HttpClient\CachedHttpClient();
-//		$client->setCache(new \Github\HttpClient\Cache\FilesystemCache(Yii::getAlias('@runtime/github-cache')));
-//		$client = new \Github\Client($client);
 		$client = new \Github\Client();
 
 		/** @var \yii\authclient\clients\GitHub $authClient */
@@ -34,5 +31,4 @@ class Github extends Component
 
 		return $client;
 	}
-
 }

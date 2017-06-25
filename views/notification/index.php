@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $notifications \yii\data\BaseDataProvider */
 
 $this->title = 'Github Notifications';
 ?>
@@ -8,7 +9,9 @@ $this->title = 'Github Notifications';
 
     <h1>Github Notifications</h1>
 
-    <pre>
-        <?= print_r($notifications, true); ?>
-    </pre>
+    <?= \yii\widgets\ListView::widget([
+        'dataProvider' => $notifications,
+        'itemView' => '_view',
+    ]) ?>
+
 </div>

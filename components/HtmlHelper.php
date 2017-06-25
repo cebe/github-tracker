@@ -1,14 +1,7 @@
 <?php
-/**
- *
- *
- * @author Carsten Brandt <mail@cebe.cc>
- */
 
 namespace app\components;
 
-
-use yii\bootstrap\Progress;
 use yii\helpers\Html;
 
 class HtmlHelper
